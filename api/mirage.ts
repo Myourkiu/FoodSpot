@@ -4,7 +4,6 @@ import { createServer, Model, Response } from 'miragejs'
 export function makeServer({ environment = 'development' } = {}) {
   return createServer({
     environment,
-
     models: {
       user: Model,
     },
@@ -21,8 +20,7 @@ export function makeServer({ environment = 'development' } = {}) {
         const { username, password } = JSON.parse(request.requestBody)
 
         // Acessa todos os usuários e filtra manualmente
-        const users = schema.db.users
-        const user = users.find((u) => u.username === username && u.password === password)
+        const user = schema.users.findBy({ username, password });
 
         if (user) {
           // Retorna o tipo de usuário se as credenciais estiverem corretas

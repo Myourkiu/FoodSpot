@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { PiForkKnifeFill } from "react-icons/pi";
 import FoodCard from "./components/FoodCard";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 export default function LandingPage() {
+  
   return (
     <div className="p-4 md:px-12 overflow-x-hidden">
       <header className="flex justify-between">
@@ -10,7 +12,7 @@ export default function LandingPage() {
           <PiForkKnifeFill className="text-redColor text-5xl" />
           Bem-vindo ao FoodSpot
         </p>
-        <Button className="bg-redColor hover:bg-red-600">Log-in</Button>
+        <Link href={"/pages/login"} className="bg-redColor hover:bg-red-600 w-24 rounded-lg h-9 text-sm text-white flex justify-center items-center">Log-in</Link>
       </header>
       <main className="flex flex-col my-12">
         <section className="flex flex-col md:flex-row gap-2">
