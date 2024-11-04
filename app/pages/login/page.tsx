@@ -10,6 +10,7 @@ import { makeServer } from "@/api/mirage";
 import axiosInstance from "@/api/axiosInstance";
 import { useRouter } from "next/navigation";
 import {toast} from "react-toastify"
+import Cookies from "js-cookie";
 type LoginFormInputs = z.infer<typeof loginSchema>;
 makeServer()
 export default function Login() {
@@ -32,7 +33,8 @@ export default function Login() {
         username: data.userName,
         password: data.password,
       });
-
+      Cookies.set('session', 'true', { expires: 1 }); // Define o cookie 'session' com expiração de 1 dia
+      Cookies.set('userType', response.data.userType, { expires: 1 });
       if(response.data.userType == "customer") router.push("/pages/customer/home")
         else if(response.data.userType == "admin") router.push("/pages/admin/home")
     
